@@ -5,9 +5,8 @@
  * @return {NSString}
  */
 function request(url) {
-    var request = NSURLRequest.requestWithURL(NSURL.URLWithString(url));
-    var response = NSURLConnection.sendSynchronousRequest_returningResponse_error(request, null, null);
-    return response;
+  var request = NSURLRequest.requestWithURL(NSURL.URLWithString(url));
+  return NSURLConnection.sendSynchronousRequest_returningResponse_error(request, null, null);
 }
 
 /**
@@ -17,7 +16,7 @@ function request(url) {
  * @return {String}
  */
 function toString(response) {
-    return NSString.alloc().initWithData_encoding(response, NSUTF8StringEncoding);
+  return NSString.alloc().initWithData_encoding(response, NSUTF8StringEncoding);
 }
 
 /**
@@ -28,12 +27,12 @@ function toString(response) {
  * @return {Fill}
  */
 function setImage(layer, data) {
-    var image = NSImage.alloc().initWithData(data);
-    var fill = layer.style().fills().firstObject();
-    fill.setFillType(4);
-    fill.setPatternImage(image);
-    fill.setPatternFillType(1);
-    return fill;
+  var image = NSImage.alloc().initWithData(data);
+  var fill = layer.style().fills().firstObject();
+  fill.setFillType(4);
+  fill.setPatternImage(image);
+  fill.setPatternFillType(1);
+  return fill;
 }
 
 /**
@@ -43,7 +42,7 @@ function setImage(layer, data) {
  * @return {Number}
  */
 function random(limit) {
-    return Math.floor(Math.random() * limit) + 1;
+  return Math.floor(Math.random() * limit) + 1;
 }
 
 /**
@@ -54,5 +53,5 @@ function random(limit) {
  * @return {Boolean}
  */
 function endsWith(str, suffix) {
-    return str.indexOf(suffix, str.length - suffix.length) !== -1;
+  return str.indexOf(suffix, str.length - suffix.length) !== -1;
 }
