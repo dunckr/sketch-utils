@@ -1,6 +1,6 @@
 # Sketch Utils
 
-Utility functions for Sketch plugins
+Helper functions for creating Sketch plugins.
 
 ## Usage
 
