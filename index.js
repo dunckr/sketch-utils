@@ -27,11 +27,19 @@ function toString(response) {
  * @return {Fill}
  */
 function setImage(layer, data) {
-  var image = NSImage.alloc().initWithData(data);
+  var sketchVersion = sketchVersion()
   var fill = layer.style().fills().firstObject();
   fill.setFillType(4);
-  fill.setPatternImage(image);
-  fill.setPatternFillType(1);
+  fill.setPatternFillType(0);
+  if (sketchVersion > 370) {
+    var imageData = MSImageData.alloc().initWithImage_convertColorSpace(image, false)
+    fill.setImage(imageData)
+  } else if (sketchVersion < 350) {
+    fill.setPatternImage_collection(image, fill.documentData().images())
+  } else {
+    fill.setPatternImage(image)
+  }
+  fill.setPatternFillType(0);
   return fill;
 }
 
@@ -54,4 +62,17 @@ function random(limit) {
  */
 function endsWith(str, suffix) {
   return str.indexOf(suffix, str.length - suffix.length) !== -1;
+}
+
+
+/**
+ * Sketch Version as a number
+ *
+ * @return {Number}
+ */
+function sketchVersion() {
+  var version = NSBundle.mainBundle().objectForInfoDictionaryKey('CFBundleShortVersionString')
+  var versionNumber = version.stringByReplacingOccurrencesOfString_withString('.', '') + ''
+  if (versionNumber.length < 3) versionNumber += '0'
+  return parseInt(versionNumber)
 }
