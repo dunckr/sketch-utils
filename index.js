@@ -23,18 +23,18 @@ function toString(response) {
  * Fill layer with Image Data
  *
  * @param {Layer} layer
- * @param {Data} data
+ * @param {Image} image
  * @return {Fill}
  */
-function setImage(layer, data) {
-  var sketchVersion = sketchVersion()
+function setImage(layer, image) {
+  var version = sketchVersion()
   var fill = layer.style().fills().firstObject();
   fill.setFillType(4);
   fill.setPatternFillType(0);
-  if (sketchVersion > 370) {
+  if (version > 370) {
     var imageData = MSImageData.alloc().initWithImage_convertColorSpace(image, false)
     fill.setImage(imageData)
-  } else if (sketchVersion < 350) {
+  } else if (version < 350) {
     fill.setPatternImage_collection(image, fill.documentData().images())
   } else {
     fill.setPatternImage(image)
