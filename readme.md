@@ -6,7 +6,7 @@ Helper functions for creating Sketch plugins.
 
 + Git clone or subtree
 
-```git subtree add --prefix vendor https://github.com/dunckr/sketch-utils master —squash```
+```git subtree add --prefix vendor https://github.com/dunckr/sketch-utils master --squash```
 
 + Import into sketchplugin file
 
